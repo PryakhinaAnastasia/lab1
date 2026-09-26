@@ -11,14 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('task', function (Blueprint $table) {
-            $table->bigInteger('id');
-            $table->string('title');
-            $table->text('description');
-            $table->smallInteger('type');
-            $table->string('topic');
-            $table->smallInteger('difficulty');
-            $table->string('audio_file');
+        Schema::create('progress', function (Blueprint $table) {
+            $table->id();
+            $table->bigInteger('user_id');
+            $table->bigInteger('task_id');
+            $table->decimal('score', total: 5, places: 2);
             $table->timestamps();
         });
     }
@@ -28,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('tasks');
+        Schema::dropIfExists('progress');
     }
 };
